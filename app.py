@@ -38,13 +38,14 @@ def evaluate_model(model, X_test, y_test):
 
 
 def plot_results(y_test, y_pred):
-    plt.figure(figsize=(8, 6))
-    plt.scatter(y_test, y_pred)
-    plt.xlabel("Actual Values")
-    plt.ylabel("Predicted Values")
-    plt.title("Actual vs. Predicted Values")
-    plt.grid(True)
-    st.pyplot()
+    fig, ax = plt.subplots(figsize=(8, 6))
+    ax.scatter(y_test, y_pred)
+    ax.set_xlabel("Actual Values")
+    ax.set_ylabel("Predicted Values")
+    ax.set_title("Actual vs. Predicted Values")
+    ax.grid(True)
+    st.pyplot(fig)
+
 
 
 def main():
