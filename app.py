@@ -22,6 +22,7 @@ This app allows you to predict Translation Initation Rate in Saccharomyces cerev
 
 def load_data(file):
     df = pd.read_csv(file)
+    df = df[df['initiation_rate'] < 0.25]  # Filter values less than 0.25
     return df
 
 
@@ -62,6 +63,7 @@ def main():
         st.write(df_example)
         return
 
+
     # Load Data
     df = load_data(file)
     st.write("Data:")
@@ -89,6 +91,7 @@ def main():
     # Evaluate Random Forest Model
     rf_y_pred, rf_r = evaluate_model(rf_model, X_test, y_test)
     st.write("Random Forest R Value:", rf_r)
+    st.write(rf_y_pred)
 
     # Plot Random Forest Results
     st.subheader("Random Forest Results")
@@ -97,10 +100,25 @@ def main():
     # Evaluate XGBoost Model
     xgb_y_pred, xgb_r = evaluate_model(xgb_model, X_test, y_test)
     st.write("XGBoost R Value:", xgb_r)
+    st.write(xgb_y_pred)
 
     # Plot XGBoost Results
     st.subheader("XGBoost Results")
     plot_results(y_test, xgb_y_pred)
+    
+
+    # Create a DataFrame with predictions
+    df_predictions = pd.DataFrame({
+        'Random Forest Predictions': rf_y_pred,
+        'XGBoost Predictions': xgb_y_pred
+    })
+
+    # Provide a download link for predictions
+    csv = df_predictions.to_csv(index=False)
+    b64 = base64.b64encode(csv.encode()).decode()  # Convert DataFrame to base64 encoding
+    href = f'<a href="data:file/csv;base64,{b64}" download="predictions.csv">Download Predictions</a>'
+    st.markdown("Download Predictions:")
+    st.markdown(href, unsafe_allow_html=True)
 
 
 if __name__ == '__main__':
