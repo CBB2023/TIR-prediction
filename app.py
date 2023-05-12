@@ -50,16 +50,25 @@ def plot_results(y_test, y_pred):
 
 def main():
 
+    # Example input file
+    example_file = 'demo_file.csv'
+
+
     # File Upload
-    file = st.file_uploader("Upload CSV", type=["csv"])
+    file = st.file_uploader("Upload CSV", type=["csv"], key='file_uploader')
     if not file:
-        st.warning("Please upload a CSV file.")
+        st.warning("Please upload a CSV file or use the example file.")
+        st.write("Example File:")
+        df_example = pd.read_csv(example_file)
+        st.write(df_example)
         return
 
     # Load Data
     df = load_data(file)
     st.write("Data:")
     st.write(df)
+    
+
 
     # Split Data into Features and Target
     X = df.drop('initiation_rate', axis=1)
