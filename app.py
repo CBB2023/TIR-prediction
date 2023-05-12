@@ -3,7 +3,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 import pickle
-from sklearn.metrics import r2_score
+from scipy.stats import pearsonr
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestRegressor
 from xgboost import XGBRegressor
@@ -33,8 +33,8 @@ def train_model(model, X_train, y_train):
 
 def evaluate_model(model, X_test, y_test):
     y_pred = model.predict(X_test)
-    r2 = r2_score(y_test, y_pred)
-    return y_pred, r2
+    r = pearsonr(y_test, y_pred)
+    return y_pred, r
 
 
 def plot_results(y_test, y_pred):
@@ -65,7 +65,7 @@ def main():
     y = df['initiation_rate']
 
     # Train-Test Split
-    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)
 
     # Load Models
     rf_model_path = "tir_rf_model.pkl"
@@ -78,16 +78,16 @@ def main():
         xgb_model = pickle.load(f)
 
     # Evaluate Random Forest Model
-    rf_y_pred, rf_r2 = evaluate_model(rf_model, X_test, y_test)
-    st.write("Random Forest R-squared Value:", rf_r2)
+    rf_y_pred, rf_r = evaluate_model(rf_model, X_test, y_test)
+    st.write("Random Forest R Value:", rf_r)
 
     # Plot Random Forest Results
     st.subheader("Random Forest Results")
     plot_results(y_test, rf_y_pred)
 
     # Evaluate XGBoost Model
-    xgb_y_pred, xgb_r2 = evaluate_model(xgb_model, X_test, y_test)
-    st.write("XGBoost R-squared Value:", xgb_r2)
+    xgb_y_pred, xgb_r = evaluate_model(xgb_model, X_test, y_test)
+    st.write("XGBoost R Value:", xgb_r)
 
     # Plot XGBoost Results
     st.subheader("XGBoost Results")
@@ -96,4 +96,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-
