@@ -22,7 +22,6 @@ This app allows you to predict Translation Initation Rate in Saccharomyces cerev
 
 def load_data(file):
     df = pd.read_csv(file)
-    df = df[df['initiation_rate'] < 0.25]  # Filter values less than 0.25
     return df
 
 
