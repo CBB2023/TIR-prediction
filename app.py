@@ -7,6 +7,7 @@ from scipy.stats import pearsonr
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestRegressor
 from xgboost import XGBRegressor
+import base64
 
 # Page title
 st.markdown("""
@@ -22,7 +23,7 @@ This app allows you to predict Translation Initation Rate in Saccharomyces cerev
 
 def load_data(file):
     df = pd.read_csv(file)
-    df = df[df['initiation_rate'] < 0.25]  # Filter values less than 0.25
+    #df = df[df['initiation_rate'] < 0.25]  # Filter values less than 0.25
     return df
 
 
@@ -31,20 +32,9 @@ def train_model(model, X_train, y_train):
     return model
 
 
-def evaluate_model(model, X_test, y_test):
+def evaluate_model(model, X_test):
     y_pred = model.predict(X_test)
-    r = pearsonr(y_test, y_pred)
-    return y_pred, r
-
-
-def plot_results(y_test, y_pred):
-    fig, ax = plt.subplots(figsize=(8, 6))
-    ax.scatter(y_test, y_pred)
-    ax.set_xlabel("Actual Values")
-    ax.set_ylabel("Predicted Values")
-    ax.set_title("Actual vs. Predicted Values")
-    ax.grid(True)
-    st.pyplot(fig)
+    return y_pred
 
 
 
@@ -69,14 +59,7 @@ def main():
     st.write("Data:")
     st.write(df)
     
-
-
-    # Split Data into Features and Target
-    X = df.drop('initiation_rate', axis=1)
-    y = df['initiation_rate']
-
-    # Train-Test Split
-    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)
+    
 
     # Load Models
     rf_model_path = "tir_rf_model.pkl"
@@ -89,23 +72,14 @@ def main():
         xgb_model = pickle.load(f)
 
     # Evaluate Random Forest Model
-    rf_y_pred, rf_r = evaluate_model(rf_model, X_test, y_test)
-    st.write("Random Forest R Value:", rf_r)
+    rf_y_pred = evaluate_model(rf_model, df)
     st.write(rf_y_pred)
 
-    # Plot Random Forest Results
-    st.subheader("Random Forest Results")
-    plot_results(y_test, rf_y_pred)
 
     # Evaluate XGBoost Model
-    xgb_y_pred, xgb_r = evaluate_model(xgb_model, X_test, y_test)
-    st.write("XGBoost R Value:", xgb_r)
+    xgb_y_pred = evaluate_model(xgb_model, df)
     st.write(xgb_y_pred)
 
-    # Plot XGBoost Results
-    st.subheader("XGBoost Results")
-    plot_results(y_test, xgb_y_pred)
-    
 
     # Create a DataFrame with predictions
     df_predictions = pd.DataFrame({
@@ -119,7 +93,10 @@ def main():
     href = f'<a href="data:file/csv;base64,{b64}" download="predictions.csv">Download Predictions</a>'
     st.markdown("Download Predictions:")
     st.markdown(href, unsafe_allow_html=True)
+    
+
 
 
 if __name__ == '__main__':
     main()
+
