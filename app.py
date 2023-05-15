@@ -73,12 +73,10 @@ def main():
 
     # Evaluate Random Forest Model
     rf_y_pred = evaluate_model(rf_model, df)
-    st.write(rf_y_pred)
 
 
     # Evaluate XGBoost Model
     xgb_y_pred = evaluate_model(xgb_model, df)
-    st.write(xgb_y_pred)
 
 
     # Create a DataFrame with predictions
