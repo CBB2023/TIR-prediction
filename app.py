@@ -53,51 +53,42 @@ def main():
         return
     # Start Prediction Button
     if st.button("Start Prediction"):
-        # Perform prediction and display the results
-        st.write("Performing prediction...")
-        # Add your prediction code here
+        # Load Data
+        df = load_data(file)
+        st.write("Data:")
+        st.write(df)
 
-        # Display the prediction results
-        st.write("Prediction Results:")
-        # Add the code to display the results
-
-    # Load Data
-    df = load_data(file)
-    st.write("Data:")
-    st.write(df)
     
-    
+        # Load Models
+        rf_model_path = "tir_rf_model.pkl"
+        xgb_model_path = "tir_xgb_model.pkl"
 
-    # Load Models
-    rf_model_path = "tir_rf_model.pkl"
-    xgb_model_path = "tir_xgb_model.pkl"
+        with open(rf_model_path, 'rb') as f:
+            rf_model = pickle.load(f)
 
-    with open(rf_model_path, 'rb') as f:
-        rf_model = pickle.load(f)
+        with open(xgb_model_path, 'rb') as f:
+            xgb_model = pickle.load(f)
 
-    with open(xgb_model_path, 'rb') as f:
-        xgb_model = pickle.load(f)
-
-    # Evaluate Random Forest Model
-    rf_y_pred = evaluate_model(rf_model, df)
+        # Evaluate Random Forest Model
+        rf_y_pred = evaluate_model(rf_model, df)
 
 
-    # Evaluate XGBoost Model
-    xgb_y_pred = evaluate_model(xgb_model, df)
+        # Evaluate XGBoost Model
+        xgb_y_pred = evaluate_model(xgb_model, df)
 
 
-    # Create a DataFrame with predictions
-    df_predictions = pd.DataFrame({
-        'Random Forest Predictions': rf_y_pred,
-        'XGBoost Predictions': xgb_y_pred
-    })
+        # Create a DataFrame with predictions
+        df_predictions = pd.DataFrame({
+            'Random Forest Predictions': rf_y_pred,
+            'XGBoost Predictions': xgb_y_pred
+        })
 
-    # Provide a download link for predictions
-    csv = df_predictions.to_csv(index=False)
-    b64 = base64.b64encode(csv.encode()).decode()  # Convert DataFrame to base64 encoding
-    href = f'<a href="data:file/csv;base64,{b64}" download="predictions.csv">Download Predictions</a>'
-    st.markdown("Download Predictions:")
-    st.markdown(href, unsafe_allow_html=True)
+        # Provide a download link for predictions
+        csv = df_predictions.to_csv(index=False)
+        b64 = base64.b64encode(csv.encode()).decode()  # Convert DataFrame to base64 encoding
+        href = f'<a href="data:file/csv;base64,{b64}" download="predictions.csv">Download Predictions</a>'
+        st.markdown("Download Predictions:")
+        st.markdown(href, unsafe_allow_html=True)
    
 
 if __name__ == '__main__':
