@@ -11,20 +11,18 @@ import base64
 
 # Page title
 st.markdown("""
-# Translation Initation Rate Prediction App 
+# TIR Prediction App 
 
 This app allows you to predict Translation Initation Rate in Saccharomyces cerevisiae using mRNA features using Machine Learning methods
 
 **Credits**
-- App built in `Python` + `Streamlit` by Sulagno Chakraborty, Inayat Ullah Irshad, Mahima
-and Dr. Ajeet K. Sharma
+- App built in `Python` + `Streamlit` by Sulagno Chakraborty, Inayat Ullah Irshad, Mahima and Dr. Ajeet K. Sharma
 [[Read the Paper]]().
 ---
 """)
 
 def load_data(file):
     df = pd.read_csv(file)
-    #df = df[df['initiation_rate'] < 0.25]  # Filter values less than 0.25
     return df
 
 
@@ -92,9 +90,16 @@ def main():
     href = f'<a href="data:file/csv;base64,{b64}" download="predictions.csv">Download Predictions</a>'
     st.markdown("Download Predictions:")
     st.markdown(href, unsafe_allow_html=True)
-    
-
-
+   
+    # Start Prediction Button
+    if st.button("Start Prediction"):
+        # Perform prediction and display the results
+        st.write("Performing prediction...")
+        # Add your prediction code here
+        
+        # Display the prediction results
+        st.write("Prediction Results:")
+        # Add the code to display the results
 
 if __name__ == '__main__':
     main()
