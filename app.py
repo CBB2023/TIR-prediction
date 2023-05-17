@@ -49,13 +49,14 @@ def main():
         st.write("Example File:")
         df_example = pd.read_csv(example_file)
         st.write(df_example)
-        
+        return
 
-        df = load_data(file)
-        st.write("Example File:")
-        st.write(df_example)
-        st.write("User Data:")
-        st.write(df)
+
+    # Load Data
+    df = load_data(file)
+    st.write("Data:")
+    st.write(df)
+    
     
 
     # Start Prediction Button
