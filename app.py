@@ -51,7 +51,15 @@ def main():
         df_example = pd.read_csv(example_file)
         st.write(df_example)
         return
+    # Start Prediction Button
+    if st.button("Start Prediction"):
+        # Perform prediction and display the results
+        st.write("Performing prediction...")
+        # Add your prediction code here
 
+        # Display the prediction results
+        st.write("Prediction Results:")
+        # Add the code to display the results
 
     # Load Data
     df = load_data(file)
