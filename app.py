@@ -99,15 +99,6 @@ def main():
     st.markdown("Download Predictions:")
     st.markdown(href, unsafe_allow_html=True)
    
-    # Start Prediction Button
-    if st.button("Start Prediction"):
-        # Perform prediction and display the results
-        st.write("Performing prediction...")
-        # Add your prediction code here
-        
-        # Display the prediction results
-        st.write("Prediction Results:")
-        # Add the code to display the results
 
 if __name__ == '__main__':
     main()
