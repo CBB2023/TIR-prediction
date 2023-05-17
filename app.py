@@ -57,7 +57,7 @@ def main():
         st.write("Example File:")
         df_example = pd.read_csv(example_file)
         st.write(df_example)
-        st.markdown(f"[Download Example File]({example_file})")
+        st.markdown(f"[Download Example File]({/example_file})")
         return
 
 
