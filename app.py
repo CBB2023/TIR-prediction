@@ -48,14 +48,13 @@ def main():
     if not file:
         st.warning("Please upload a CSV file or use the example file.")
         st.write("Example File:")
-        df_example = pd.read_csv(example_file)
         st.write(df_example)
-        return
-
-    # Load Data
-    if file:
+    else:
+        # Load User Data
         df = load_data(file)
-        st.write("Data:")
+        st.write("Example File:")
+        st.write(df_example)
+        st.write("User Data:")
         st.write(df)
     
 
