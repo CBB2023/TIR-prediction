@@ -43,9 +43,9 @@ def main():
     example_file = 'demo_file.csv'
    
     # File Upload
-    file = st.file_uploader("Upload CSV", type=["csv"], key='file_uploader')
+    file = st.file_uploader("Upload the file", type=["csv","xlsx"], key='file_uploader')
     if not file:
-        st.warning("Please upload a CSV file or use the example file.")
+        st.warning("Please upload a file in excel or csv format")
         st.write("Example File:")
         df_example = pd.read_csv(example_file)
         st.write(df_example)
