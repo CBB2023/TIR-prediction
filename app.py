@@ -15,6 +15,14 @@ st.markdown("""
 
 This app allows you to predict Translation Initation Rate in Saccharomyces cerevisiae using mRNA features using Machine Learning methods
 
+How to use:
+
+1. Upload your input file in the specified format as in "Example file"
+2. Click on the "Start Prediction" to initiate the analysis.
+3. After completion download the output file by clicking "Download Predictions"
+
+Note: The output file will contain the perdcited translation initiation rate of the input given for specific given genes.
+
 **Credits**
 - App built in `Python` + `Streamlit` by Sulagno Chakraborty, Inayat Ullah Irshad, Mahima and Dr. Ajeet K. Sharma
 [[Read the Paper]]().
