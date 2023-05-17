@@ -52,7 +52,7 @@ def main():
         return
 
 
-    # Load Data
+    else:
         df = load_data(file)
         st.write("Example File:")
         st.write(df_example)
