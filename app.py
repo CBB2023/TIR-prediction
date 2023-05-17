@@ -53,9 +53,11 @@ def main():
         return
 
     # Load Data
-    df = load_data(file)
-    st.write("Data:")
-    st.write(df)
+    if file:
+        df = load_data(file)
+        st.write("Data:")
+        st.write(df)
+    
 
     # Start Prediction Button
     if st.button("Start Prediction"):  
