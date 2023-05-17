@@ -51,14 +51,14 @@ def main():
         df_example = pd.read_csv(example_file)
         st.write(df_example)
         return
-    # Start Prediction Button
-    if st.button("Start Prediction"):
-        # Load Data
-        df = load_data(file)
-        st.write("Data:")
-        st.write(df)
 
-    
+     # Load Data
+     df = load_data(file)
+     st.write("Data:")
+     st.write(df)
+
+    # Start Prediction Button
+    if st.button("Start Prediction"):  
         # Load Models
         rf_model_path = "tir_rf_model.pkl"
         xgb_model_path = "tir_xgb_model.pkl"
