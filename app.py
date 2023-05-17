@@ -52,10 +52,10 @@ def main():
         st.write(df_example)
         return
 
-     # Load Data
-     df = load_data(file)
-     st.write("Data:")
-     st.write(df)
+    # Load Data
+    df = load_data(file)
+    st.write("Data:")
+    st.write(df)
 
     # Start Prediction Button
     if st.button("Start Prediction"):  
