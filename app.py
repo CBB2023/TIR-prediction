@@ -21,7 +21,7 @@ How to use:
 2. Click on the "Start Prediction" to initiate the analysis.
 3. After completion download the output file by clicking "Download Predictions".
 
-Note: The output file will contain the perdcited translation initiation rate of the input given for specific given genes.
+Note: The output file will contain the perdcited translation initiation rate of the input given for specific given genes.It works properly with one or more genes.
 
 **Credits**
 - App built in `Python` + `Streamlit` by Sulagno Chakraborty, Inayat Ullah Irshad, Mahima and Dr. Ajeet K. Sharma
