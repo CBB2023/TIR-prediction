@@ -13,9 +13,14 @@ import base64
 st.markdown("""
 # TIR Prediction App 
 
-This app allows you to predict Translation Initation Rate in Saccharomyces cerevisiae using mRNA features using Machine Learning methods
+This app allows you to predict Translation Initation Rate in Saccharomyces cerevisiae using mRNA features using Machine Learning methods.
 
-How to use:
+### Introduction: 
+
+Translation initiation, which is the rate-limiting step in protein synthesis, can vary significantly and have a profound impact on cellular protein levels. 
+Multiple molecular factors, such as mRNA structure stability, coding sequence length, and specific motifs in mRNA, influence the translation initiation rate, allowing precise control of protein synthesis.
+
+### How to use:
 
 1. Upload your input file with specified features as in "Example file".
 2. Click on the "Start Prediction" to initiate the analysis.
