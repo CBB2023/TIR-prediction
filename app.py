@@ -20,8 +20,8 @@ This app allows you to predict Translation Initation Rate in Saccharomyces cerev
 Translation initiation, which is the rate-limiting step in protein synthesis, can vary significantly and have a profound impact on cellular protein levels. 
 Multiple molecular factors, such as mRNA structure stability, coding sequence length, and specific motifs in mRNA, influence the translation initiation rate, 
 allowing precise control of protein synthesis. Despite the crucial role of translation initiation rate, accurately predicting its absolute values based on mRNA 
-sequence features remains challenging. To address this issue, the authors developed a machine learning model specifically trained to predict the in vivo 
-initiation rate in S. cerevisiae transcripts. 
+sequence features remains challenging. To address this issue, we developed a machine learning model specifically trained to predict the in vivo 
+initiation rate in S. cerevisiae transcripts. This has been developed on python 3.9 
 
 ### How to use:
 
