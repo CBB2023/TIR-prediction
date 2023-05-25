@@ -11,9 +11,9 @@ import base64
 
 # Page title
 st.markdown("""
-# TIR Prediction App 
+# TIR Predictor 
 
-This app allows you to predict Translation Initation Rate in Saccharomyces cerevisiae using mRNA features using Machine Learning methods.
+This allows user to predict Translation Initation Rate in Saccharomyces cerevisiae using mRNA features using Machine Learning methods.
 
 ### Introduction: 
 
@@ -32,7 +32,7 @@ initiation rate in S. cerevisiae transcripts. This has been developed on python 
 Note: The output file will contain the perdcited translation initiation rate of the input given for specific given genes.It works properly with one or more genes.
 
 **Credits**
-- App built in `Python` + `Streamlit` by Sulagno Chakraborty, Inayat Ullah Irshad, Mahima and Dr. Ajeet K. Sharma
+- Built in `Python` + `Streamlit` by Sulagno Chakraborty, Inayat Ullah Irshad, Mahima and Ajeet K. Sharma
 [[Read the Paper]]().
 ---
 """)
